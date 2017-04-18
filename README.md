@@ -20,6 +20,10 @@ var accessMap = new AccessReferenceMap({ width: 32 });
 var object = db.fetchObject({ name: 'someValue' });
 var indirectReference = accessMap.addDirectReference(object.id);
 
+/* Or obscure a direct file reference using an indirect reference */
+var fileReference = accessMap.addDirectReference('/path/to/file/system/entry');
+res.json({ file: fileReference });
+
 /* Fetch original object from mapping */
 var directReference = accessMap.getDirectReference(indirectReference);
 var originalObject = db.fetchObject({ id: directReference });
